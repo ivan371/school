@@ -6,8 +6,8 @@
     <img class="avatar"src="{{ us.avatar.url }}" width="200px">
     <h1>Сообщение {{mes.text}}</h1>
     <h2>Было отправлено в  {{mes.time}}</h2>
-    <h3>От {{mes.setter}}</h3>
-    <h4>Кому {{mes.getter}}</h4>
+    <h3>От <a href="../{{mes.setter.id}}/">{{mes.setter.login}}</a></h3>
+    <h4>Кому <a href="../{{mes.getter.id}}/">{{mes.getter.login}}</a></h4>
     </div>
 
 {% endfor %}

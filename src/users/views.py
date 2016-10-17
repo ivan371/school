@@ -13,3 +13,9 @@ class UserList(ListView):
     template_name = 'users/list_users.html'
     context_object_name = 'list_users'
     model = Users
+
+
+class show_user(DetailView):
+    template_name = 'users/deteled_user.html'
+    context_object_name = 'us'
+    model = Users
