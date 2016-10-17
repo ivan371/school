@@ -3,5 +3,5 @@ from .views import *
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^list/$', PostsList.as_view(), name="list"),
+    url(r'^post/$', PostsList.as_view(), name="post"),
 ]

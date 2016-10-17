@@ -2,12 +2,15 @@
 {% block content %}
 <a href="home">Назад</a>
 {% for us in object_list %}
+    <div>
+    <img class="avatar"src="{{ us.avatar.url }}" width="200px">
     <h1>Login: {{us.login}}</h1>
     <h2>Name: {{us.name}}</h2>
     <h3>Surname: {{us.surname}}</h3>
     <h4>Rating: {{us.rating}}</h4>
     <p>E-mail: {{us.email}}</p>
     <b>Proffession: {{us.proffession}}</b>
+    </div>
 
 {% endfor %}
 {% endblock %}

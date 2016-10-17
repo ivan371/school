@@ -22,4 +22,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include('post.urls', namespace='post')),
     url(r'^', include('users.urls', namespace='users'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

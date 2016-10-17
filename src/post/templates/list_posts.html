@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="home">Назад</a>
+{% for post in object_list %}
+    <div>
+    <img class="avatar"src="{{ post.avatar.url }}" width="200px">
+    <h1>{{post.title}}</h1>
+    <h2>{{post.content}}</h2>
+    <h3>{{post.created_at}}</h3>
+    <h4>Создан {{post.author.name}}</h4>
+    </div>
+
+{% endfor %}
+{% endblock %}
