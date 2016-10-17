@@ -10,3 +10,4 @@ class PostsList(ListView):
     context_object_name = 'post'
     model = post
 
+
