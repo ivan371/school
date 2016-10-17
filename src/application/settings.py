@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users',
     'like',
     'post',
+    'message',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/asus/school/collected_static/'
 STATICFILES_DIRS = ('/home/asus/school/src/static/', )
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media/')

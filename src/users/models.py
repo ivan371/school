@@ -23,5 +23,5 @@ class claz(models.Model):
 
 class test(models.Model):
     testclass = models.ForeignKey(claz)
-    sender = models.ForeignKey(Users, "sender")
+    sender = models.ForeignKey(Users)
     file = models.FileField()

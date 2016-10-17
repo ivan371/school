@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<html lang="RU">
+<head>
+<link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+</head>
+<body>
+<img class="back" src="{% static "img/back.jpg" %}" >
+<div class="content_menu"></div>
+    <div class="content">
+{% block content %}
+{% endblock %}
+    </div>
+</body>
+</html>

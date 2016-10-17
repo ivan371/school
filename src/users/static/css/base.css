@@ -1,0 +1,23 @@
+.back
+{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.content_menu
+{
+    width: 100%;
+    height: 10%;
+    background-color: black;
+}
+.content
+{
+    position: absolute;
+    color: black;
+}
