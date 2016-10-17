@@ -21,3 +21,8 @@
     position: absolute;
     color: black;
 }
+.avatar
+{
+    position: absolute;
+    left: 500px;
+}

@@ -6,10 +6,10 @@ from .models import Users
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'users/home.html')
 
 
 class UserList(ListView):
-    template_name = 'list_users.html'
+    template_name = 'users/list_users.html'
     context_object_name = 'list_users'
     model = Users
