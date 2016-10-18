@@ -15,13 +15,5 @@ class Users(models.Model):
     def __unicode__(self):
         return u'{} {} {} {} {}'.format(self.login, self.name, self.surname, self.email, self.rating, self.avatar)
 
-
-class claz(models.Model):
-    teacher = models.ForeignKey(Users, related_name="teacher")
-    pupil = models.ForeignKey(Users, related_name="pupil")
-
-
-class test(models.Model):
-    testclass = models.ForeignKey(claz)
-    sender = models.ForeignKey(Users)
-    file = models.FileField()
+    def get_messages(self):
+        return self.messages

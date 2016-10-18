@@ -12,3 +12,6 @@ class post(models.Model):
 
     def __unicode__(self):
         return u'{} {} {}'.format(self.title, self.created_at, self.author.name)
+
+    def count_likes(self):
+        return self.likes.count()

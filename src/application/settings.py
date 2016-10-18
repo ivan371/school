@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'like',
     'post',
     'message',
+    'classes',
 ]
 
 MIDDLEWARE = [
