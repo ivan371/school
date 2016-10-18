@@ -5,11 +5,10 @@ from users.models import Users
 
 class classes(models.Model):
     teacher = models.ForeignKey(Users, related_name="teacher")
-    list_pupils = 0
 
-    def get_pupils(self):
-        self.list_pupils = pupils.objects.filter(clas=self)
-        return self.list_pupils
+#    def get_pupils(self):
+#        self.list_pupils = pupils.objects.filter(clas=self)
+#        return self.list_pupils
 
     def count_pupils(self):
         return self.pupit_count

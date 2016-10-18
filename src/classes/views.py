@@ -9,8 +9,9 @@ class ClassList(ListView):
     template_name = 'post/list_classes.html'
     context_object_name = 'class'
     newclass = classes.objects.all()
-    #for cl in newclass:
-    #    cl.list_pupils = pupils.objects.filter(clas=cl)
-    model = newclass
+    claz = []
+    for cl in newclass:
+        claz.append(pupils.objects.filter(clas=cl))
+    model = claz
 
 
