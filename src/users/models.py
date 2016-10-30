@@ -3,17 +3,16 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class Users(models.Model):
-    login = models.CharField(max_length=100)
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
+class User(AbstractUser):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=0)
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
-    proffession = models.IntegerField()
+    proffession = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return u'{} {} {} {} {}'.format(self.login, self.name, self.surname, self.email, self.rating, self.avatar)
+        return u'{} {} {} {} {}'.format(self.first_name, self.last_name,  self.email, self.rating, self.avatar)
 
     def get_messages(self):
         return self.messages

@@ -13,7 +13,7 @@
 .content_menu
 {
     width: 100%;
-    height: 10%;
+    height: 12%;
     background-color: black;
 }
 .content
@@ -25,4 +25,34 @@
 {
     position: absolute;
     left: 500px;
+}
+.home
+{
+    position: absolute;
+    left: 5%;
+    width: 5%;
+}
+.mess
+{
+    position: absolute;
+    top: 2%;
+    left: 90%;
+    width: 5%;
+}
+.enter
+{
+    position: absolute;
+    top: 7%;
+    left: 90.6%;
+    width: 5%;
+}
+.registration
+{
+    position: absolute;
+    top: 7%;
+    left: 3%;
+}
+p
+{
+    color:white;
 }

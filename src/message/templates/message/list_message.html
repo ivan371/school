@@ -1,14 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 <a href="../home">Назад</a>
-{% for mes in object_list %}
+Полученные
+{% for us in User_s %}
+    {% if us.setter.all %}
+    <a href="../{{us.id}}/">{{us.username}}</a>
+    {% for u in us.setter.all%}
     <div>
-    <img class="avatar"src="{{ us.avatar.url }}" width="200px">
-    <h1>Сообщение {{mes.text}}</h1>
-    <h2>Было отправлено в  {{mes.time}}</h2>
-    <h3>От <a href="../{{mes.setter.id}}/">{{mes.setter.login}}</a></h3>
-    <h4>Кому <a href="../{{mes.getter.id}}/">{{mes.getter.login}}</a></h4>
-    </div>
-
+    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
+    <h1>Сообщение {{u.text}}</h1>
+    <h2>Было отправлено в  {{u.date}}</h2>
+    {% endfor %}
+     <form method="post">
+     {% csrf_token %}
+         {{form}}
+     <input type="submit" value="Ответить">
+    </form>
+    {% endif %}
 {% endfor %}
+Отправленные
+{% for us in User_g %}
+    {% if us.getter.all %}
+    <a href="../{{us.id}}/">{{us.username}}</a>
+    {% for u in us.getter.all%}
+    <div>
+    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
+    <h1>Сообщение {{u.text}}</h1>
+    <h2>Было отправлено в  {{u.date}}</h2>
+    {% endfor %}
+     <form method="post">
+     {% csrf_token %}
+         {{form}}
+     <input type="submit" value="Ответить">
+    </form>
+    {% endif %}
+{% endfor %}
+
 {% endblock %}

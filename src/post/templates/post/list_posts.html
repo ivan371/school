@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <a href="../home">Назад</a>
-{% for post in object_list %}
+ <form method="post">
+                {% csrf_token %}
+                {{ form }}
+
+                <input type="submit" value="Создать пост">
+        </form>
+{% for post in posts %}
     <div>
+    {% if post.avatar %}
     <img class="avatar"src="{{ post.avatar.url }}" width="200px">
+    {% endif %}
     <h1>{{post.title}}</h1>
     <h2>{{post.content}}</h2>
     <h3>{{post.created_at}}</h3>
-    <h4>Создан <a href="../{{post.author.id}}/">{{post.author.name}}</a></h4>
+    <h4>Создан <a href="../{{post.author.id}}/">{{post.author.username}}</a></h4>
     </div>
 
 {% endfor %}

@@ -1,15 +1,11 @@
 from __future__ import unicode_literals
 from django.db import models
-from users.models import Users
+from users.models import User
 
 
 class classes(models.Model):
-    teacher = models.ForeignKey(Users, related_name="teacher")
-    list_pupils = 0
-
-    def get_pupils(self):
-        self.list_pupils = pupils.objects.filter(clas=self)
-        return self.list_pupils
+    teacher = models.ForeignKey(User, related_name="teacher")
+    pupils = models.ManyToManyField(User, related_name="students", blank=True)
 
     def count_pupils(self):
         return self.pupit_count
@@ -21,13 +17,8 @@ class classes(models.Model):
         return self.new_test_count
 
 
-class pupils(models.Model):
-    clas = models.ForeignKey(classes)
-    pupil = models.ForeignKey(Users, related_name="pupil")
-
-
 class test(models.Model):
     testclass = models.ForeignKey(classes)
-    sender = models.ForeignKey(Users)
+    sender = models.ForeignKey(User)
     file = models.FileField(upload_to='tests',)
     mark = models.IntegerField()

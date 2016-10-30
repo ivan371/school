@@ -6,11 +6,9 @@ from .models import *
 
 
 class ClassList(ListView):
-    template_name = 'post/list_classes.html'
-    context_object_name = 'class'
-    newclass = classes.objects.all()
-    #for cl in newclass:
-    #    cl.list_pupils = pupils.objects.filter(clas=cl)
-    model = newclass
+    template_name = 'classes/list_classes.html'
+    model = classes
 
+    def get_queryset(self):
+        return classes.objects.filter(teacher=self.request.user)
 

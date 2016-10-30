@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Личный кабинет</h1>
+<div>
+    {% if user.avatar %}
+    <img class="avatar"src="{{ user.avatar.url }}" width="200px">
+    {% endif %}
+    <h1>Login: {{user.username}}</h1>
+    <h2>Name: {{user.first_name}}</h2>
+    <h3>Surname: {{user.last_name}}</h3>
+    <h4>Rating: {{user.rating}}</h4>
+    <p>E-mail: {{user.email}}</p>
+    <b>Proffession: {{user.proffession}}</b>
+    </div>
+<a href="{% url 'users:self_update' %}">редактировать</a>
+{% endblock %}

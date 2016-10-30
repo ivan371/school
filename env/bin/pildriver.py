@@ -1,4 +1,4 @@
-#!/home/asus/school/env/bin/python
+#!/home/ivan/school/env/bin/python
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine
