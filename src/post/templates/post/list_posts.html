@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <a href="../home">Назад</a>
+<form action="">
+        {{sform.search}}
+        <input type="submit" value="Найти">
+    </form>
+    <form action="">
+        {{sform.sort_field}}
+        <input type="submit" value="Отсортировать">
+    </form>
  <form method="post">
                 {% csrf_token %}
                 {{ form }}

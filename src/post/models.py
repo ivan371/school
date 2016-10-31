@@ -11,7 +11,7 @@ class post(models.Model):
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
 
     def __unicode__(self):
-        return u'{} {} {}'.format(self.title, self.created_at, self.author.name)
+        return u'{} {} {}'.format(self.title, self.created_at, self.author.username)
 
     def count_likes(self):
         return self.likes.count()

@@ -3,11 +3,10 @@
 <a href="../home">Назад</a>
 <h1>Список классов</h1>
 {% for class in object_list %}
+{{class.classname}}
+{% for cl in class.pupils.all %}
+<a href="../{{cl.id}}/">{{cl.username}}</a>
+{% endfor %}
 <br>
-{{class.pupils}}
-    <div>
-    <h2>{{student}}</h2>
-    <h3>{{post.created_at}}</h3>
-    </div>
 {% endfor %}
 {% endblock %}
