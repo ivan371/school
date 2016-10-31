@@ -6,7 +6,7 @@
 <body>
 <img class="back" src="{% static "img/back.jpg" %}" >
 <div class="content_menu">
-    <a href="../home"><img class="home" src="{%static "img/r1.png" %}"></a>
+    <a href="{% url 'users:home' %}"><img class="home" src="{%static "img/r1.png" %}"></a>
     <a href="../message"><img class="mess" src="{%static "img/message.png" %}"></a>
     {% if user.is_authenticated %}
     <div class="enter" ><a href="{% url 'users:logout' %}"><p>Выход</p></a></div>

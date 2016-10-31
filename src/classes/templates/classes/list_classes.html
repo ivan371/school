@@ -3,10 +3,12 @@
 <a href="../home">Назад</a>
 <h1>Список классов</h1>
 {% for class in object_list %}
-{{class.classname}}
+<a href= "{{class.id}}">{{class.classname}}</a>
+<br>
 {% for cl in class.pupils.all %}
 <a href="../{{cl.id}}/">{{cl.username}}</a>
 {% endfor %}
+<br>
 <br>
 {% endfor %}
 {% endblock %}

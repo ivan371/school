@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="../home">Назад</a>
+<a href="../">Назад</a>
 <form action="">
         {{sform.search}}
         <input type="submit" value="Найти">
@@ -24,6 +24,9 @@
     <h2>{{post.content}}</h2>
     <h3>{{post.created_at}}</h3>
     <h4>Создан <a href="../{{post.author.id}}/">{{post.author.username}}</a></h4>
+    {% if post.author == user%}
+        <a href="/post/{{post.id}}/">редактировать</a>
+    {% endif %}
     </div>
 
 {% endfor %}

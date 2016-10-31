@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="../">Назад</a>
+{% for post in class.post_set.all %}
+    <div>
+    {% if post.avatar %}
+    <img class="avatar"src="{{ post.avatar.url }}" width="200px">
+    {% endif %}
+    <h1>{{post.title}}</h1>
+    <h2>{{post.content}}</h2>
+    <h3>{{post.created_at}}</h3>
+    <h4>Создан <a href="../{{post.author.id}}/">{{post.author.username}}</a></h4>
+    </div>
+
+{% endfor %}
+{% endblock %}
