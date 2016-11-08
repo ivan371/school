@@ -1,18 +1,18 @@
 from django.shortcuts import HttpResponse, HttpResponseRedirect, reverse, render
 from django.views.generic import DetailView
 from django.views.generic import ListView, CreateView
-from .models import post
+from .models import Post
 from .forms import PostsListForm, PostForm
 
 
 class PostsList(CreateView):
     template_name = 'post/list_posts.html'
     context_object_name = 'post'
-    model = post
+    model = Post
     fields = ['title', 'content', 'avatar',]
 
     def dispatch(self, request, pk=None, *args, **kwargs):
-        self.posts = post.objects.all()
+        self.posts = Post.objects.all()
         self.form = PostsListForm(request.GET)
         self.form.is_valid()
         if self.form.cleaned_data.get('search'):
@@ -38,11 +38,11 @@ class PostsList(CreateView):
 class PostsClass(CreateView):
     template_name = 'post/list_posts.html'
     context_object_name = 'post'
-    model = post
+    model = Post
     fields = ['title', 'content', 'avatar',]
 
     def dispatch(self, request, pk=None, *args, **kwargs):
-        self.posts = post.objects.all()
+        self.posts = Post.objects.all()
         return super(PostsClass, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):

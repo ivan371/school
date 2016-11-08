@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
     rating = models.IntegerField(default=0)
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
     proffession = models.IntegerField(default=0)

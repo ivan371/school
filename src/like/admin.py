@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import like
+from .models import Like
 
 
-admin.site.register(like)
+admin.site.register(Like)

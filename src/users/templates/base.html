@@ -2,6 +2,7 @@
 <html lang="RU">
 <head>
 <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "css/message.css" %}" type="text/css" />
 </head>
 <body>
 <img class="back" src="{% static "img/back.jpg" %}" >
@@ -15,6 +16,7 @@
     <div class="registration"><a href="{% url 'users:registration' %}"><p>Регистрация</p></a></div>
     <div class="enter" ><a href="{% url 'users:login' %}"><p>Вход</p></a></div>
     {% endif %}
+    <div class="maintitle"><h3>SCHOGRAM</h3></div>
 </div>
     <div class="content">
 {% block content %}

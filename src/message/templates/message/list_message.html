@@ -1,39 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <a href="../home">Назад</a>
-Полученные
-{% for us in User_s %}
-    {% if us.setter.all %}
-    <a href="../{{us.id}}/">{{us.username}}</a>
-    {% for u in us.setter.all%}
-    <div>
-    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
-    <h1>Сообщение {{u.text}}</h1>
-    <h2>Было отправлено в  {{u.date}}</h2>
-    {% endfor %}
-     <form method="post">
-     {% csrf_token %}
-         {{form}}
-     <input type="submit" value="Ответить">
-    </form>
-    {% endif %}
+<div class="messeger">
+{% for dialog in list_message %}
+    <div class="dialog">
+    {{dialog.name}}
+    </div>
+    <div class="message">
+    {% for mess in dialog.message_set.all %}
+        <div class="mess_text">
+        <div class="text_mess">{{mess.text}}</div>
+        <div class="mess_author">{{mess.author.username}}</div>
+        <div class="mess_date">{{mess.date}}</div>
+        </div>
+    {% endfor%}
+    </div>
 {% endfor %}
-Отправленные
-{% for us in User_g %}
-    {% if us.getter.all %}
-    <a href="../{{us.id}}/">{{us.username}}</a>
-    {% for u in us.getter.all%}
-    <div>
-    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
-    <h1>Сообщение {{u.text}}</h1>
-    <h2>Было отправлено в  {{u.date}}</h2>
-    {% endfor %}
-     <form method="post">
-     {% csrf_token %}
-         {{form}}
-     <input type="submit" value="Ответить">
-    </form>
-    {% endif %}
-{% endfor %}
-
+</div>
 {% endblock %}
