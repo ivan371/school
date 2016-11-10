@@ -1,39 +1,30 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-<a href="../home">Назад</a>
-Полученные
-{% for us in User_s %}
-    {% if us.setter.all %}
-    <a href="../{{us.id}}/">{{us.username}}</a>
-    {% for u in us.setter.all%}
-    <div>
-    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
-    <h1>Сообщение {{u.text}}</h1>
-    <h2>Было отправлено в  {{u.date}}</h2>
-    {% endfor %}
-     <form method="post">
-     {% csrf_token %}
-         {{form}}
-     <input type="submit" value="Ответить">
-    </form>
-    {% endif %}
-{% endfor %}
-Отправленные
-{% for us in User_g %}
-    {% if us.getter.all %}
-    <a href="../{{us.id}}/">{{us.username}}</a>
-    {% for u in us.getter.all%}
-    <div>
-    <img class="avatar"src="{{ u.avatar.url }}" width="200px">
-    <h1>Сообщение {{u.text}}</h1>
-    <h2>Было отправлено в  {{u.date}}</h2>
-    {% endfor %}
-     <form method="post">
-     {% csrf_token %}
-         {{form}}
-     <input type="submit" value="Ответить">
-    </form>
-    {% endif %}
-{% endfor %}
+<div class="col-md-4 col-md-offset-8 post sms">
+{% for dialog in list_message %}
+    <div class="dialog_name" id="{{dialog.id}}">
+    {{dialog.name}}
+    </div>
+    <div class="dialog">
+    {% for mess in dialog.message_set.all %}
+        <div class="mess_text">
+        <img class="user_avatar_message"src="{{mess.author.avatar.url}}">
+        <p>{{mess.text}}</p>
+        <p class="mess_date">{{mess.date}}</p>
+        </div>
+    {% endfor%}
+        <div class="mess_text">
+    {% if dialog.id == 1%}
+        <form method="post" >
+                {% csrf_token %}
+                {{ form|crispy }}
 
+                <input type="submit" class="btn btn-primary" value="Ответить">
+        </form>
+      {% endif %}
+      </div>
+    </div>
+{% endfor %}
+</div>
 {% endblock %}

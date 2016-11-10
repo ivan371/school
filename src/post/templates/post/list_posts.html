@@ -1,33 +1,42 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-<a href="../">Назад</a>
+<div class="row">
+    <div class="col-md-2">
 <form action="">
         {{sform.search}}
-        <input type="submit" value="Найти">
+        <input type="submit" class="btn btn-primary" value="Найти">
     </form>
-    <form action="">
-        {{sform.sort_field}}
-        <input type="submit" value="Отсортировать">
-    </form>
- <form method="post">
+        <form method="post" >
                 {% csrf_token %}
-                {{ form }}
+                {{ form|crispy }}
 
-                <input type="submit" value="Создать пост">
+                <input type="submit" class="btn btn-primary" value="Создать пост">
         </form>
+        </div>
+    <div class="col-md-1">
+        </div>
+<div class="col-md-5">
 {% for post in posts %}
-    <div>
-    {% if post.avatar %}
-    <img class="avatar"src="{{ post.avatar.url }}" width="200px">
-    {% endif %}
-    <h1>{{post.title}}</h1>
-    <h2>{{post.content}}</h2>
-    <h3>{{post.created_at}}</h3>
-    <h4>Создан <a href="../{{post.author.id}}/">{{post.author.username}}</a></h4>
+    <div class="post">
+    <div class="creator"><a href="../{{post.author.id}}/"><img class="user_avatar"src="{{post.author.avatar.url}}"></a></div>
+    <h3>{{post.title}}</h3>
+    <p>{{post.content}}</p>
+    <div class="date">{{post.created_at}}</div>
     {% if post.author == user%}
-        <a href="/post/{{post.id}}/">редактировать</a>
+        <div class="update"><a href="/post/{{post.id}}/" >редактировать</a></div>
     {% endif %}
+        <br>
     </div>
 
 {% endfor %}
+    </div>
+    <div class="col-md-1">
+        </div>
+    <div class="col-md-2">
+    <form action="">
+        {{sform.sort_field}}
+        <input type="submit" class="btn btn-primary" value="Отсортировать">
+    </form>
+         </div>
 {% endblock %}

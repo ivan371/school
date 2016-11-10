@@ -13,13 +13,13 @@ class UserList(ListView):
     model = User
 
 
-class show_user(DetailView):
+class Show_user(DetailView):
     template_name = 'users/deteled_user.html'
     context_object_name = 'us'
     model = User
 
 
-class registration(CreateView):
+class Registration(CreateView):
     template_name = 'users/registration.html'
     model = User
     fields = ['username', 'password', 'first_name', 'email', 'last_name', 'proffession', 'avatar']
@@ -32,13 +32,13 @@ def registration_complete(request):
     return render(request, 'users/registration_complete.html')
 
 
-class self_room(ListView):
+class Self_room(ListView):
     template_name = 'users/self_room.html'
     model = User
     fields = ('last_name', 'avatar', 'first_name')
 
 
-class self_update(UpdateView):
+class Self_update(UpdateView):
     template_name = 'users/self_update.html'
     model = User
     fields = ('last_name', 'avatar', 'first_name')

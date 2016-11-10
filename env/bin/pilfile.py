@@ -1,4 +1,4 @@
-#!/home/ivan/school/env/bin/python
+#!/home/asus/school/env/bin/python
 #
 # The Python Imaging Library.
 # $Id$

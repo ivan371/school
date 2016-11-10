@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import classes
-from .models import test
+from .models import Classes
+from .models import Test
 
 
-admin.site.register(classes)
-admin.site.register(test)
+admin.site.register(Classes)
+admin.site.register(Test)

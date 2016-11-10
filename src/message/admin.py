@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import message
+from .models import Message
+from .models import Dialog
 
 
-admin.site.register(message)
+admin.site.register(Message)
+admin.site.register(Dialog)

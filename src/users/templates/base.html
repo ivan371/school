@@ -1,21 +1,34 @@
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 <html lang="RU">
 <head>
 <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "js/message.js" %}" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <img class="back" src="{% static "img/back.jpg" %}" >
 <div class="content_menu">
     <a href="{% url 'users:home' %}"><img class="home" src="{%static "img/r1.png" %}"></a>
     <a href="../message"><img class="mess" src="{%static "img/message.png" %}"></a>
-    {% if user.is_authenticated %}
-    <div class="enter" ><a href="{% url 'users:logout' %}"><p>Выход</p></a></div>
-    <div class="registration"><a href="{% url 'users:self_room' %}"><p>Личный кабиент</p></a></div>
-    {% else %}
-    <div class="registration"><a href="{% url 'users:registration' %}"><p>Регистрация</p></a></div>
-    <div class="enter" ><a href="{% url 'users:login' %}"><p>Вход</p></a></div>
-    {% endif %}
+    <div class="maintitle"><h3>SCHOGRAM</h3></div>
 </div>
+    <nav>
+    <div class="col-md-1"><a href="../">Назад</a></div>
+   <div class="col-md-3"></div>
+
+    <div class="col-md-2"><a href="../classes">Классы</a></div>
+    <div class="col-md-2"><a href="../post">Посты</a></div>
+    <div class="col-md-1"></div>
+        {% if user.is_authenticated %}
+     <div class="col-md-2"><a href="{% url 'users:self_room' %}">Личный кабиент</a></div>
+    <div class="col-md-1"><a href="{% url 'users:logout' %}">Выход</a></div>
+         {% else %}
+    <div class="col-md-2"><a href="{% url 'users:registration' %}">Регистрация</a></div>
+    <div class="col-md-1"><a href="{% url 'users:login' %}">Вход</a></div>
+    {% endif %}
+
+    </nav>
     <div class="content">
 {% block content %}
 {% endblock %}
