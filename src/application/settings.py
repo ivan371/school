@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'post',
     'message',
     'classes',
+    'crispy_forms',
 ]
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = "users:home"
 LOGIN_URL = "users:login"
 LOGOUT_URL = 'users:logout'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

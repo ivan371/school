@@ -1,17 +1,19 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-<a href="../">Назад</a>
+<div class="row">
+    <div class="col-md-2">
 <form action="">
         {{sform.search}}
         <input type="submit" value="Найти">
     </form>
-    <form action="">
-        {{sform.sort_field}}
-        <input type="submit" value="Отсортировать">
-    </form>
- <form method="post">
+        </div>
+    <div class="col-md-1">
+        </div>
+<div class="col-md-5">
+ <form method="post" >
                 {% csrf_token %}
-                {{ form }}
+                {{ form|crispy }}
 
                 <input type="submit" value="Создать пост">
         </form>
@@ -30,4 +32,13 @@
     </div>
 
 {% endfor %}
+    </div>
+    <div class="col-md-2">
+        </div>
+    <div class="col-md-2">
+    <form action="">
+        {{sform.sort_field}}
+        <input type="submit" value="Отсортировать">
+    </form>
+         </div>
 {% endblock %}
