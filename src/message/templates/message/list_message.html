@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="../home">Назад</a>
-<div class="messeger">
+<div class="col-md-4 col-md-offset-8 post sms">
 {% for dialog in list_message %}
-    <div class="dialog">
+    <div class="dialog_name" >
     {{dialog.name}}
     </div>
-    <div class="message">
+    <div class="dialog">
     {% for mess in dialog.message_set.all %}
         <div class="mess_text">
         <div class="text_mess">{{mess.text}}</div>
@@ -14,6 +13,7 @@
         <div class="mess_date">{{mess.date}}</div>
         </div>
     {% endfor%}
+        <br>
     </div>
 {% endfor %}
 </div>

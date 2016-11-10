@@ -9,7 +9,7 @@ class PostsList(CreateView):
     template_name = 'post/list_posts.html'
     context_object_name = 'post'
     model = Post
-    fields = ['title', 'content', 'avatar',]
+    fields = ['title', 'content',]
 
     def dispatch(self, request, pk=None, *args, **kwargs):
         self.posts = Post.objects.all()
@@ -39,7 +39,7 @@ class PostsClass(CreateView):
     template_name = 'post/list_posts.html'
     context_object_name = 'post'
     model = Post
-    fields = ['title', 'content', 'avatar',]
+    fields = ['title', 'content']
 
     def dispatch(self, request, pk=None, *args, **kwargs):
         self.posts = Post.objects.all()
