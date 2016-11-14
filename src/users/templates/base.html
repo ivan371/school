@@ -3,34 +3,63 @@
 <html lang="RU">
 <head>
 <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "css/animate.css" %}" type="text/css" />
+    <script src='{% static 'js/message.js' %}'></script>
+    <script src='{% static 'js/animate.js' %}'></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <img class="back" src="{% static "img/back.jpg" %}" >
 <div class="content_menu">
-    <a href="{% url 'users:home' %}"><img class="home" src="{%static "img/r1.png" %}"></a>
-    <a href="../message"><img class="mess" src="{%static "img/message.png" %}"></a>
+    <a href="{% url 'users:home' %}"><img class="home animated" id="content-menu-home" src="{%static "img/r1.png" %}" onmouseover="animation('content-menu-home', 'jello')"></a>
+    <a onclick="block_message()"><img class="mess animated" id="content-menu-message" src="{%static "img/message.png" %}" onmouseover="animation('content-menu-message', 'jello')"></a>
     <div class="maintitle"><h3>SCHOGRAM</h3></div>
 </div>
     <nav>
-    <div class="col-md-1"><a href="../">Назад</a></div>
+    <div class="col-md-1 animated" id="content-menu-1" onmouseover="animation('content-menu-1', 'jello')"><a href="../">Назад</a></div>
    <div class="col-md-3"></div>
 
-    <div class="col-md-2"><a href="../classes">Классы</a></div>
-    <div class="col-md-2"><a href="../post">Посты</a></div>
+    <div class="col-md-2 animated" id="content-menu-3" onmouseover="animation('content-menu-3', 'jello')"><a href="../classes">Классы</a></div>
+    <div class="col-md-2 animated" id="content-menu-4" onmouseover="animation('content-menu-4', 'jello')"><a href="../post">Посты</a></div>
     <div class="col-md-1"></div>
         {% if user.is_authenticated %}
-     <div class="col-md-2"><a href="{% url 'users:self_room' %}">Личный кабиент</a></div>
-    <div class="col-md-1"><a href="{% url 'users:logout' %}">Выход</a></div>
+     <div class="col-md-2 animated" id="content-menu-5" onmouseover="animation('content-menu-5', 'jello')"><a href="{% url 'users:self_room' %}">Личный кабиент</a></div>
+    <div class="col-md-1 animated" id="content-menu-6" onmouseover="animation('content-menu-6', 'jello')"><a href="{% url 'users:logout' %}">Выход</a></div>
          {% else %}
-    <div class="col-md-2"><a href="{% url 'users:registration' %}">Регистрация</a></div>
-    <div class="col-md-1"><a href="{% url 'users:login' %}">Вход</a></div>
+    <div class="col-md-2 animated" id="content-menu-7" onmouseover="animation('content-menu-7', 'jello')"><a href="{% url 'users:registration' %}">Регистрация</a></div>
+    <div class="col-md-1 animated" id="content-menu-8" onmouseover="animation('content-menu-8', 'jello')"><a href="{% url 'users:login' %}">Вход</a></div>
     {% endif %}
 
     </nav>
     <div class="content">
 {% block content %}
 {% endblock %}
+<div class="post sms animated" id="sms">
+{% for dialog in list_message %}
+    <div class="dialog_name" onclick="select_message({{dialog.id}})">
+    {{dialog.name}}
+    </div>
+    <div class="dialog" id="{{dialog.id}}">
+    {% for mess in dialog.message_set.all %}
+        <div class="mess_text animated" id="dialog-{{dialog.id}}mess-{{mess.id}}" onmouseover="animationto('dialog-{{dialog.id}}mess-{{mess.id}}', 'pulseto')" onmouseout="animationof('dialog-{{dialog.id}}mess-{{mess.id}}', 'pulseout', 'pulceto')">
+        <img class="user_avatar_message"src="{{mess.author.avatar.url}}">
+        <p>{{mess.text}}</p>
+        <p class="mess_date">{{mess.date}}</p>
+        </div>
+    {% endfor%}
+        <div class="mess_text">
+        <form method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="dial" value="{{dialog.id}}">
+                {{ newform|crispy }}
+
+                <input type="submit" class="btn btn-primary" value="Ответить">
+        </form>
+      </div>
+    </div>
+{% endfor %}
+</div>
+
     </div>
 </body>
 </html>

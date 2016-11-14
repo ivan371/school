@@ -6,28 +6,27 @@ from .models import User
 from django import forms
 
 
-class MessageList(ListView):
+class MessageList(CreateView):
     template_name = 'message/list_message.html'
-    context_object_name = 'list_message'
-    model = Dialog
-    #fields = ['text', 'author']
+    model = Message
+    fields = ['text']
 
-    #def dispatch(self, request, pk=None, *args, **kwargs):
-    #    self.User_s = User.objects.filter(setter=request.user.id)
+    def dispatch(self, request, pk=None, *args, **kwargs):
     #    self.User_g = User.objects.exclude(setter=request.user.id)
+        self.dialog = Dialog.objects.all()
     #    print(self.User_s)
     #    print(self.User_g)
-    #    return super(MessageList, self).dispatch(request, *args, **kwargs)
+        return super(MessageList, self).dispatch(request, *args, **kwargs)
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(MessageList, self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(MessageList, self).get_context_data(**kwargs)
     #    context['User_s'] = self.User_s
-    #    context['User_g'] = self.User_g
-    #    return context
+        context['list_message'] = self.dialog
+        return context
 
     #def form_valid(self, form):
     #    form.instance.setter = self.request.user
     #    return super(MessageList, self).form_valid(form)
 
-    #def get_success_url(self):
-    #    return reverse('message:message')
+    def get_success_url(self):
+        return reverse('message:message')
