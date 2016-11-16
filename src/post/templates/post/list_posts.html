@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load staticfiles %}
 <div class="row">
     <div class="col-md-2">
 <form action="">
@@ -19,12 +20,13 @@
 <div class="col-md-5">
 {% for post in posts %}
     <div class="post animated" id="post{{post.id}}" onmouseover="animationto('post{{post.id}}', 'pulseto')" onmouseout="animationof('post{{post.id}}', 'pulseout', 'pulceto')">
-    <div class="creator"><a href="../{{post.author.id}}/"><img class="user_avatar"src="{{post.author.avatar.url}}"></a></div>
+    {% if post.author == user%}<img class="close" src="{% static "img/close.png" %}" width=20px> {% endif %}
+        <div class="creator"><a href="../{{post.author.id}}/"><img class="user_avatar"src="{{post.author.avatar.url}}"></a></div>
     <h3>{{post.title}}</h3>
-    <p>{{post.content}}</p>
+        <p>{{post.content}}</p>
     <div class="date">{{post.created_at}}</div>
     {% if post.author == user%}
-        <div class="update"><a href="/post/{{post.id}}/" >редактировать</a></div>
+        <div class="update"><a class="href" href="/post/{{post.id}}/" >редактировать</a></div>
     {% endif %}
         <br>
     </div>

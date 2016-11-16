@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="../home">Назад</a>
-<div>
+<div class="col-md-4 col-md-offset-4 post">
     {% if us.avatar %}
-    <img class="avatar"src="{{ us.avatar.url }}" width="200px">
+    <img class="avatar"src="{{ us.avatar.url }}" width="200px" height="120px">
     {% endif %}
-    <h1>Login: {{us.username}}</h1>
-    <h2>Name: {{us.first_name}}</h2>
-    <h3>Surname: {{us.last_name}}</h3>
-    <h4>Rating: {{us.rating}}</h4>
+    <p>{{us.first_name}}
+    {{user.last_name}}</p>
+    <p>Рейтинг: {{us.rating}}</p>
     <p>E-mail: {{us.email}}</p>
-    <b>Proffession: {{us.proffession}}</b>
+    <p>Статус: {% if us.proffession == 0 %}ученик{% else %} учитель{% endif %}</p>
     </div>
 {% endblock %}

@@ -32,7 +32,7 @@ class PostsList(CreateView):
     template_name = 'post/list_posts.html'
     context_object_name = 'post'
     model = Post
-    fields = ['title', 'content', 'avatar',]
+    fields = ['title', 'content',]
 
     def dispatch(self, request, pk, *args, **kwargs):
         queryset = get_object_or_404(Classes.objects.all(), id=pk)
@@ -58,4 +58,4 @@ class PostsList(CreateView):
         return super(PostsList, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('classes:classes')
+        return reverse('post:post')
