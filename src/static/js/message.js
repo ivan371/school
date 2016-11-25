@@ -20,3 +20,18 @@ function block_message()
         is_blocked = 0;
     }
 }
+is_title = 0;
+function change_post()
+{
+    if(is_title == 0)
+    {
+        document.getElementById("create-post-title").style.display = "none";
+        document.getElementById("create-post").style.display = "block";
+        is_title = 1;
+    }
+    else {
+        document.getElementById("create-post").style.display = "none";
+        document.getElementById("create-post-title").style.display = "block";
+        is_title = 0;
+    }
+}

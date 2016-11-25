@@ -228,3 +228,13 @@ h3
 .mess_text p{
     color: white;
 }
+#create
+{
+    cursor: text;
+}
+.create-post
+{
+    width: 60%;
+    margin: auto;
+    display: none;
+}

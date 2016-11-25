@@ -8,16 +8,29 @@
         {{sform.search}}
         <input type="submit" class="btn btn-primary" value="Найти">
     </form>
-        <form method="post" >
-                {% csrf_token %}
-                {{ form|crispy }}
-
-                <input type="submit" class="btn btn-primary" value="Создать пост">
-        </form>
+    <form action="">
+        {{sform.sort_field}}
+        <input type="submit" class="btn btn-primary" value="Отсортировать">
+    </form>
         </div>
     <div class="col-md-1">
         </div>
 <div class="col-md-5">
+  <div class="post animated" id="create" onmouseover="animationto('create', 'pulseto')" onmouseout="animationof('create', 'pulseout', 'pulceto')">
+      <div id="create-post-title" onclick="change_post()">
+      <h4>
+        Создать пост
+      </h4>
+    </div>
+      <div class="create-post" id="create-post">
+      <form method="post" >
+              {% csrf_token %}
+              {{ form|crispy }}
+
+              <input type="submit" class="btn btn-primary" value="Создать пост">
+      </form>
+    </div>
+  </div>
 {% for post in posts %}
     <div class="post animated" id="post{{post.id}}" onmouseover="animationto('post{{post.id}}', 'pulseto')" onmouseout="animationof('post{{post.id}}', 'pulseout', 'pulceto')">
     {% if post.author == user%}<img class="close" src="{% static "img/close.png" %}" width=20px> {% endif %}
@@ -36,9 +49,5 @@
     <div class="col-md-1">
         </div>
     <div class="col-md-2">
-    <form action="">
-        {{sform.sort_field}}
-        <input type="submit" class="btn btn-primary" value="Отсортировать">
-    </form>
          </div>
 {% endblock %}

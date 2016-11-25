@@ -7,6 +7,9 @@
     {{dialog.name}}
     </div>
     <div class="dialog" id="{{dialog.id}}">
+        <div class="mess_text">
+          Назад
+        </div>
     {% for mess in dialog.message_set.all %}
         <div class="mess_text">
         <img class="user_avatar_message"src="{{mess.author.avatar.url}}">
