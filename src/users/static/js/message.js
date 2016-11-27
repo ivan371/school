@@ -20,3 +20,26 @@ function block_message()
         is_blocked = 0;
     }
 }
+
+$(document).ready(function() {
+    $('.mess').click(function() {
+        $('.content-dialog').load('/message/');
+        return false;
+    });
+    $(document).on('submit', '.ajax-form', function(){
+        var form = $(this);
+        $.post(form.attr('action'), form.serialize(), function(data){
+            alert(1);
+            if(data == 'OK') {
+                window.location.reload();
+            }
+            form.html(data);
+
+        })
+            .fail(function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+            });;
+        return false;
+    });
+});
+

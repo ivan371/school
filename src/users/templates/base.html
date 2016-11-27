@@ -1,22 +1,25 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
-<html lang="RU">
+<html lang="RU" xmlns="http://www.w3.org/1999/html">
 <head>
-<link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+ <script src='{% static 'js/jquery.js' %}'></script>
+    <script src='{% static 'js/jquery.zoomooz.min.js' %}'></script>
+    <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
     <link rel="stylesheet" href="{% static "css/animate.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" type="text/css" />
     <script src='{% static 'js/message.js' %}'></script>
     <script src='{% static 'js/animate.js' %}'></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
-<body>
+<body style="height: 100%">
 <img class="back" src="{% static "img/back.jpg" %}" >
 <div class="content_menu">
     <a href="{% url 'users:home' %}"><img class="home animated" id="content-menu-home" src="{%static "img/r1.png" %}" onmouseover="animation('content-menu-home', 'jello')"></a>
-    <a onclick="block_message()"><img class="mess animated" id="content-menu-message" src="{%static "img/message.png" %}" onmouseover="animation('content-menu-message', 'jello')"></a>
+    <a><img class="mess animated" id="content-menu-message" src="{%static "img/message.png" %}" onmouseover="animation('content-menu-message', 'jello')"></a>
     <div class="maintitle"><h3>SCHOGRAM</h3></div>
 </div>
     <nav>
-    <div class="col-md-1 animated" id="content-menu-1" onmouseover="animation('content-menu-1', 'jello')"><a href="../">Назад</a></div>
+    <div class="col-md-1 animjello animated" id="content-menu-1" ><a href="../">Назад</a></div>
    <div class="col-md-3 animated " id="content-menu-2" onmouseover="animation('content-menu-2', 'jello')"><a href="../">Тесты</a></div>
 
     <div class="col-md-2 animated" id="content-menu-3" onmouseover="animation('content-menu-3', 'jello')"><a href="{% url 'classes:classes'%}">Классы</a></div>
@@ -34,35 +37,8 @@
     <div class="content">
 {% block content %}
 {% endblock %}
-<div class="post sms animated" id="sms">
-{% for dialog in list_message %}
-    <div class="dialog_name" onclick="select_message({{dialog.id}})">
-    {{dialog.name}}
+    <div class="content-dialog">
     </div>
-    <div class="dialog" id="{{dialog.id}}">
-      <div class="dialog_name">
-        Назад
-      </div>
-    {% for mess in dialog.message_set.all %}
-        <div class="mess_text animated" id="dialog-{{dialog.id}}mess-{{mess.id}}" onmouseover="animationto('dialog-{{dialog.id}}mess-{{mess.id}}', 'pulseto')" onmouseout="animationof('dialog-{{dialog.id}}mess-{{mess.id}}', 'pulseout', 'pulceto')">
-        <img class="user_avatar_message"src="{{mess.author.avatar.url}}">
-        <p>{{mess.text}}</p>
-        <p class="mess_date">{{mess.date}}</p>
-        </div>
-    {% endfor%}
-        <div class="mess_text">
-        <form method="post" >
-                {% csrf_token %}
-                <input type="hidden" name="dial" value="{{dialog.id}}">
-                {{ newform|crispy }}
-
-                <input type="submit" class="btn btn-primary" value="Ответить">
-        </form>
-      </div>
-    </div>
-{% endfor %}
-</div>
-
     </div>
 </body>
 </html>

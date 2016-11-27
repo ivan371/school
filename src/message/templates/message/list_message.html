@@ -1,31 +1,17 @@
-{% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-<div class="col-md-4 col-md-offset-8 post sms">
+{% load staticfiles %}
+<script src='{% static 'js/dialog_ready.js' %}'>
+</script>
+<script src='{% static 'js/close_dialog.js' %}'>
+</script>
+<div class="post sms animated" id="sms">
+<div class='close'><img src="{% static "img/close.png" %}" width=20px></div>
 {% for dialog in list_message %}
-    <div class="dialog_name" onclick="select_message({{dialog.id}})">
+    <div class="dialog_name" data-dialog="{{dialog.id}}">
     {{dialog.name}}
     </div>
-    <div class="dialog" id="{{dialog.id}}">
-        <div class="mess_text">
-          Назад
-        </div>
-    {% for mess in dialog.message_set.all %}
-        <div class="mess_text">
-        <img class="user_avatar_message"src="{{mess.author.avatar.url}}">
-        <p>{{mess.text}}</p>
-        <p class="mess_date">{{mess.date}}</p>
-        </div>
-    {% endfor%}
-        <div class="mess_text">
-        <form method="post" >
-                {% csrf_token %}
-                {{ form|crispy }}
+    <div class="dialog" id="dialog{{dialog.id}}">
 
-                <input type="submit" class="btn btn-primary" value="Ответить">
-        </form>
-      </div>
     </div>
 {% endfor %}
 </div>
-{% endblock %}
