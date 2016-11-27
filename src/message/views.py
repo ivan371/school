@@ -34,9 +34,9 @@ class NewMessage(CreateView):
     model = Message
     fields = ['text']
 
-    #def form_valid(self, form):
-    #    response = super(NewMessage, self).form_valid(form)
-    #    return HttpResponse('OK')
+    def form_valid(self, form):
+        response = super(NewMessage, self).form_valid(form)
+        return HttpResponse('OK')
 
 
 class AjaxableResponseMixin(object):
