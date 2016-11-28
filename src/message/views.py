@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse, HttpResponse, HttpResponseRedirect
-from django.views.generic import DetailView, CreateView, ListView, UpdateView
+# coding=utf-8
+#utf-8
+from django.shortcuts import render, get_object_or_404, reverse, HttpResponse, HttpResponseRedirect, redirect
+from django.views.generic import DetailView, CreateView, ListView, UpdateView,View
 from .models import Message
 from .models import Dialog
 from .models import User
@@ -25,18 +27,45 @@ class MessageList(CreateView):
         return reverse('message:message')
 
 
+class FormMessage(DetailView):
+    model = Dialog
+    template_name = 'message/form_message.html'
+
+
+class MessageForm(forms.Form):
+    text = forms.CharField(max_length=255)
+
+
+def createmessage(request, pk):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        print("I AM HERE")
+        if form.is_valid():
+            print("I AM HERE!")
+            data = form.cleaned_data
+            print(request)
+            m = Message(
+                text=data['text'],
+                dial=Dialog.objects.get(id=pk),
+                author=request.user,
+            )
+            m.save()
+            return HttpResponse('Сообщение отправлено!')
+    return HttpResponse('Ошибка при отправке сообщения')
+
+
 class Dialogs(DetailView):
     template_name = 'message/dialog.html'
     model = Dialog
 
 
 class NewMessage(CreateView):
+    template_name = 'message/list_message.html'
     model = Message
-    fields = ['text']
+    fields = ['text', 'author']
 
     def form_valid(self, form):
-        response = super(NewMessage, self).form_valid(form)
-        return HttpResponse('OK')
+        return super(NewMessage, self).form_valid(form)
 
 
 class AjaxableResponseMixin(object):

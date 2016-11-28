@@ -29,16 +29,13 @@ $(document).ready(function() {
     $(document).on('submit', '.ajax-form', function(){
         var form = $(this);
         $.post(form.attr('action'), form.serialize(), function(data){
-            alert(1);
-            if(data == 'OK') {
-                window.location.reload();
-            }
             form.html(data);
 
         })
             .fail(function(xhr, errmsg, err){
  						alert(xhr.status + ": " + xhr.responseText);
-            });;
+            });
+
         return false;
     });
 });

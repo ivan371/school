@@ -1,0 +1,7 @@
+<div class="mess_text">
+        <form class="ajax-form" method="post" action="{% url 'message:create' dialog.id%}">
+                {% csrf_token %}
+                <textarea class="textarea form-control" cols="40" id="id_content" name="text" rows="10" required=""></textarea>
+            <input type="submit" class="btn btn-primary" value="Ответить">
+        </form>
+      </div>
