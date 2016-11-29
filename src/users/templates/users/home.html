@@ -1,12 +1,14 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
 <a href="../users">Список пользователей</a>
 <a href="../post">Список постов</a>
 <a href="../classes">Список классов</a>
 <a href="../message">Список сообщений</a>
-<div class="shape shape-1 zoomTarget">Rotate</div>
-<div class="shape shape-2 zoomTarget">Rotate</div>
-<div class="shape shape-3 zoomTarget">Rotate</div>
-<div class="shape shape-4 zoomTarget">Rotate</div>
+<img class="shape shape-1 zoomTarget" src="{% static "img/class1.jpg" %}" >
+<img class="shape shape-2 zoomTarget" src="{% static "img/class2.jpg" %}" >
+<img class="shape shape-3 zoomTarget" src="{% static "img/class2.jpg" %}" >
+<img class="shape shape-4 zoomTarget" src="{% static "img/class1.jpg" %}" >
+<div class="center"><h3>SCHOGRAM - лучшее решение для учеников и учителей!</h3></div>
 
 {% endblock %}

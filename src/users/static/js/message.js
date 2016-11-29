@@ -35,7 +35,9 @@ $(document).ready(function() {
             .fail(function(xhr, errmsg, err){
  						alert(xhr.status + ": " + xhr.responseText);
             });
-
+        setTimeout(function(){
+            $($('.ajax-form:visible').data('dialogcreate')).load($('.ajax-form:visible').data('dialogformload'));
+        }, 1000);
         return false;
     });
 });

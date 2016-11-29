@@ -1,17 +1,21 @@
 var messageid = 0;
 $(document).ready(function() {
        $('.dialog_name').click(function(){
-            $('.dialog').each(function(){
+            $('.dial').each(function(){
                 this.style.display = 'none';
             });
-            var id = $('#dialog' + $(this).data('dialog'));
+            $('.dialcreate').each(function(){
+                this.style.display = 'none';
+            });
+            var id = $($(this).data('dialogid'));
             id.css('display','block');
-            id.load('/message/' + $(this).data('dialog') + '/');
-            $('#create' + $(this).data('dialog')).load('/message/' + $(this).data('dialog') + '/form_message/');
+            id.load($(this).data('dialogload'));
+            $($(this).data('dialogcreate')).css('display', 'block');
+            $($(this).data('dialogcreate')).load($(this).data('dialogformload'));
             messageid = $(this).data('dialog');
             return false;
        });
-       //window.setInterval(function(){
-       //    $('#messages' + messageid).load('/message/' + messageid + '/');
-       //}, 1000);
+       window.setInterval(function(){
+           $('#dialog' + messageid).load('/message/' + messageid + '/');
+       }, 1000);
 });

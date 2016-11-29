@@ -198,7 +198,7 @@ h3
     text-align: left;
     padding: 6 6 6 6 ;
     height: 40px;
-    width: 160px;
+    width: 45%;
     margin-top: 10px;
     background: rgba(0, 0, 0, 0.5);
     border: 3px solid transparent;
@@ -209,9 +209,9 @@ h3
 {
     top: 20px;
     position: absolute;
-    left: 180px;
+    left: 50%;
+    width: 50%;
     height: 90%;
-    max-width: 220px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -252,7 +252,7 @@ h3
     -webkit-transform: rotate(45deg) translate(0px,0px);
     -moz-transform: rotate(45deg) translate(0px,0px);
     -o-transform: rotate(45deg) translate(0px,0px);
-    bottom: 0px;
+    bottom: 50px;
 }
 .shape-2
 {
@@ -260,7 +260,7 @@ h3
     -webkit-transform: rotate(-45deg) translate(0px,0px);
     -moz-transform: rotate(-45deg) translate(0px,0px);
     -o-transform: rotate(-45deg) translate(0px,0px);
-    bottom: -140px;
+    bottom: -90px;
 }
 .shape-3
 {
@@ -277,4 +277,18 @@ h3
     -moz-transform: rotate(-45deg) translate(0px,0px);
     -o-transform: rotate(-45deg) translate(0px,0px);
     top: 140px;
+}
+.center
+{
+    position: absolute;
+    top: 70%;
+    left: 55%;
+    height: 30%;
+    width: 40%;
+    margin: -15% 0 0 -25%;
+}
+
+.mess_input
+{
+    width: 100%;
 }

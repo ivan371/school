@@ -7,14 +7,18 @@
 <div class="post sms animated" id="sms">
 <div class='close'><img src="{% static "img/close.png" %}" width=20px></div>
 {% for dialog in list_message %}
-    <div class="dialog_name" data-dialog="{{dialog.id}}">
+    <div class="dialog_name" data-dialog="{{dialog.id}}" data-dialogid="#dialog{{dialog.id}}"
+         data-dialogload="/message/{{dialog.id}}/" data-dialogcreate="#create{{dialog.id}}"
+         data-dialogformload="/message/{{dialog.id}}/form_message/">
     {{dialog.name}}
     </div>
-    <div class="dialog" id="dialog{{dialog.id}}">
-        <div id="create{{dialog.id}}">
+    <div class="dialog" >
+    <div class="dial" id="dialog{{dialog.id}}">
+
+    </div>
+    <div class="dialcreate"id="create{{dialog.id}}">
 
         </div>
     </div>
-
 {% endfor %}
 </div>
