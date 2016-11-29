@@ -20,18 +20,25 @@ function block_message()
         is_blocked = 0;
     }
 }
-is_title = 0;
-function change_post()
-{
-    if(is_title == 0)
-    {
-        document.getElementById("create-post-title").style.display = "none";
-        document.getElementById("create-post").style.display = "block";
-        is_title = 1;
-    }
-    else {
-        document.getElementById("create-post").style.display = "none";
-        document.getElementById("create-post-title").style.display = "block";
-        is_title = 0;
-    }
-}
+
+$(document).ready(function() {
+    $('.mess').click(function() {
+        $('.content-dialog').load('/message/');
+        return false;
+    });
+    $(document).on('submit', '.ajax-form', function(){
+        var form = $(this);
+        $.post(form.attr('action'), form.serialize(), function(data){
+            form.html(data);
+
+        })
+            .fail(function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+            });
+        setTimeout(function(){
+            $($('.ajax-form:visible').data('dialogcreate')).load($('.ajax-form:visible').data('dialogformload'));
+        }, 1000);
+        return false;
+    });
+});
+

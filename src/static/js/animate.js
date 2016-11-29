@@ -12,3 +12,8 @@ function animationof(id, effect, neweffect){
     document.getElementById(id).classList.remove('pulseto');
     document.getElementById(id).classList.add(effect);
 }
+
+$('.animjello').mouseenter(function() {
+    alert(1);
+
+});
